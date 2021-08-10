@@ -19,7 +19,7 @@ Here is a representation of the architecture.
 
 ![alt text](https://github.com/jaysonmulwa/per-diem/blob/main/arch.png?raw=true)
 
-### Install
+### Installation
 
 1. Clone this repositry.
 ```bash
@@ -46,11 +46,51 @@ Authorization : Bearer <token>
 
 6. Access other endpoints. eg:
 ```bash
-https://localhost:3000/roles
+https://localhost:3000/order
 ```
 
 
 ### Endpoints
+
+1. Get All Orders
+```bash
+GET https://localhost:3000/order
+```
+
+
+2. Get a single order
+```bash
+GET https://localhost:3000/order/{{orderID}}
+```
+Parameters: 
+- orderID (int)
+
+
+3. Update the order
+```bash
+PUT https://localhost:3000/order {{orderID}}
+```
+Parameters: 
+- orderID (int)
+
+Body: 
+- userId (int)
+- storeId (int)
+- products (Array)
+- fulfillmentDate (Date)
+
+
+4. Create orders from the cart
+```bash
+POST https://localhost:3000/jwt
+```
+Body: 
+- frequency (int)
+- products (Array)
+- userId (int)
+- storeId (int)
+- scheduledDate (Date)
+
 
 ### Tests
 
