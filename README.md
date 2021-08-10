@@ -23,7 +23,7 @@ Here is a representation of the architecture.
 
 1. Clone this repositry.
 ```bash
-$ https://github.com/jaysonmulwa/per-diem.git
+ https://github.com/jaysonmulwa/per-diem.git
 ```
 2. Install docker to your machine.
 
@@ -37,16 +37,16 @@ $ docker run -p 3000:3000 per
 
 4. Request for the jwt token from the endpoint.
 ```bash
-$ https://localhost:3000/jwt
+https://localhost:3000/jwt
 ```
 5. Add the token your request header for other requests.
 ```bash
-$ Authorization : Bearer <token>
+Authorization : Bearer <token>
 ```
 
 6. Access other endpoints. eg:
 ```bash
-$ https://localhost:3000/roles
+https://localhost:3000/roles
 ```
 
 
