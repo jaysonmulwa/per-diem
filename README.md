@@ -9,8 +9,8 @@ The project in this repository is the backend api for the per-diem backend chall
 The features of the API satisy the given requirements, they include:
 - 4 API endpoints.
 - JWT Authentication.
-- Docker.
-- Tests.
+- Dockerized.
+- Unit Tests.
 - Inline and external documentation of the repo (This readme file).
 
 ### Architecture
@@ -25,7 +25,9 @@ Here is a representation of the architecture.
 ```bash
  https://github.com/jaysonmulwa/per-diem.git
 ```
+
 2. Install docker to your machine.
+
 
 3. Run the following commands to start up the instance.
 ```bash
@@ -39,6 +41,7 @@ $ docker run -p 3000:3000 per
 ```bash
 http://localhost:3000/jwt
 ```
+
 5. Add the token your request header for other requests.
 ```bash
 Authorization : Bearer <token>
@@ -58,12 +61,14 @@ GET http://localhost:3000/order
 ```
 
 
+
 2. Get a single order
 ```bash
 GET http://localhost:3000/order/{{orderID}}
 ```
 Parameters: 
 - orderID (int)
+
 
 
 3. Update the order
@@ -79,21 +84,57 @@ Body:
 - products (Array)
 - fulfillmentDate (Date)
 
+Example Request Body:
+```bash
+{
+    "userId": 121,
+    "storeId": 120,
+    "products": [
+        "Eggs",
+        "Milk",
+        "Bread"
+    ],
+    "fulfillmentDate": ""
+}
+```
+
 
 4. Create orders from the cart
 ```bash
 POST http://localhost:3000/jwt
 ```
 Body: 
-- frequency (int)
-- products (Array)
+- frequency (int) - weekly, bi-weekly, monthly
 - userId (int)
 - storeId (int)
-- scheduledDate (Date)
+- products (Array)
+- scheduledDate (Array) - days of the week
+- duration (int) - Number of times order is expected
+
+Example Request Body:
+```bash
+{
+    "frequency": "4",
+    "userId": 44,
+    "storeId": 44,
+    "products": [
+        "Eggs",
+        "Milk",
+        "Bread"
+    ],
+    "scheduledDate": [
+    	"Tuesday"
+    ],
+    "duration": 2
+}
+```
 
 
 ### Tests
-- Run main_test.go
+Run go test
+```bash
+$ go test
+```
 
 ### Future Improvements
 - Add a clean file structure
