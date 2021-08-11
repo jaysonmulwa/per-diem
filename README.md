@@ -37,7 +37,7 @@ $ docker run -p 3000:3000 per
 
 4. Request for the jwt token from the endpoint.
 ```bash
-https://localhost:3000/jwt
+http://localhost:3000/jwt
 ```
 5. Add the token your request header for other requests.
 ```bash
@@ -46,7 +46,7 @@ Authorization : Bearer <token>
 
 6. Access other endpoints. eg:
 ```bash
-https://localhost:3000/order
+http://localhost:3000/order
 ```
 
 
@@ -54,13 +54,13 @@ https://localhost:3000/order
 
 1. Get All Orders
 ```bash
-GET https://localhost:3000/order
+GET http://localhost:3000/order
 ```
 
 
 2. Get a single order
 ```bash
-GET https://localhost:3000/order/{{orderID}}
+GET http://localhost:3000/order/{{orderID}}
 ```
 Parameters: 
 - orderID (int)
@@ -68,7 +68,7 @@ Parameters:
 
 3. Update the order
 ```bash
-PUT https://localhost:3000/order {{orderID}}
+PUT http://localhost:3000/order/{{orderID}}
 ```
 Parameters: 
 - orderID (int)
@@ -82,7 +82,7 @@ Body:
 
 4. Create orders from the cart
 ```bash
-POST https://localhost:3000/jwt
+POST http://localhost:3000/jwt
 ```
 Body: 
 - frequency (int)
@@ -93,7 +93,9 @@ Body:
 
 
 ### Tests
-
 - Run main_test.go
+
+### Future Improvements
+- Add a clean file structure
 
 
