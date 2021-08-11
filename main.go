@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/rand"
 	"crypto/rsa"
+	"fmt"
 	"log"
 	"time"
 
@@ -116,6 +117,12 @@ func setupRoutes(app *fiber.App) {
 	//Generate jwt token
 	app.Get("/jwt", generateJWT)
 
+	// JWT Middleware
+	app.Use(jwtware.New(jwtware.Config{
+		SigningMethod: "RS256",
+		SigningKey:    privateKey.Public(),
+	}))
+
 	//Fetch specific order
 	app.Get("/order/*", func(c *fiber.Ctx) error {
 
@@ -134,12 +141,6 @@ func setupRoutes(app *fiber.App) {
 
 	//Add shopping cart and generate orders
 	app.Post("/cart", createCart)
-
-	// JWT Middleware
-	app.Use(jwtware.New(jwtware.Config{
-		SigningMethod: "RS256",
-		SigningKey:    privateKey.Public(),
-	}))
 
 }
 
@@ -346,7 +347,7 @@ func getSecondBiWeekly(cutOff int, scheduled []string) time.Time {
 	return next
 }
 
-func createOrder(c *fiber.Ctx, cart *Cart, t time.Time) *mongo.InsertOneResult {
+func createOrder(c *fiber.Ctx, cart *Cart, t time.Time) error {
 
 	insert := bson.D{
 		{Key: "userId", Value: cart.UserID},
@@ -357,5 +358,7 @@ func createOrder(c *fiber.Ctx, cart *Cart, t time.Time) *mongo.InsertOneResult {
 
 	insertionResult, _ := mg.Db.Collection("order").InsertOne(c.Context(), insert)
 
-	return insertionResult
+	fmt.Println(insertionResult)
+
+	return c.JSON(insert)
 }

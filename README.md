@@ -104,7 +104,7 @@ Example Request Body:
 POST http://localhost:3000/jwt
 ```
 Body: 
-- frequency (int) - weekly, bi-weekly, monthly
+- frequency (string) - weekly, bi-weekly, monthly
 - userId (int)
 - storeId (int)
 - products (Array)

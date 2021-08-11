@@ -7,6 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+//First day of weekly, monthly
 func TestGetFirstDay(t *testing.T) {
 	assert := assert.New(t)
 
@@ -30,6 +31,7 @@ func TestGetFirstDay(t *testing.T) {
 	}
 }
 
+//First day of bi-weekly
 func TestGetFirstBiWeekly(t *testing.T) {
 	assert := assert.New(t)
 
@@ -53,6 +55,7 @@ func TestGetFirstBiWeekly(t *testing.T) {
 	}
 }
 
+//Second day of bi-weekly
 func TestGetSecondBiWeekly(t *testing.T) {
 	assert := assert.New(t)
 
@@ -75,3 +78,5 @@ func TestGetSecondBiWeekly(t *testing.T) {
 		assert.Equal(operation, result)
 	}
 }
+
+//More tests to maock apis go here
